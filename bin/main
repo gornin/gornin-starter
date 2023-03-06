@@ -1,0 +1,54 @@
+#! /usr/bin/env node
+const { program } = require("commander");
+const chalk = require("chalk");
+const figlet = require("figlet");
+
+console.log(`
+            \r\n
+            ${chalk.green.bold(
+              figlet.textSync("gornin", {
+                font: "isometric4",
+                horizontalLayout: "default",
+                verticalLayout: "default",
+                width: 200,
+                whitespaceBreak: true,
+              })
+            )}
+        `);
+
+// 获取create模块
+const createModel = require("../lib/create");
+
+// version
+const version = require("../package.json").version;
+
+program
+  .name("gornin-starter") // 配置脚手架名称
+  .usage("<command> [option]") // 配置命令格式
+  .version(version); // 配置版本号
+
+// 颜色
+program.on("--help", () => {
+  console.log();
+  console.log(
+    `Run ${chalk.blue(
+      "gornin-starter <command> --help"
+    )} for detailed usage of given command.`
+  );
+});
+
+program
+  .command("create <project-name>")
+  .description("create a new project")
+  .option("-f, --force", "overwrite target directory if it exists")
+  .action((projectName, options) => {
+    // 一个回调，回调的第一个参数就是上面的xxx，第二个参数就是--后面的
+    // 引入create模块，并传入参数
+    createModel(projectName, options);
+  });
+
+/*
+ * gornin-starter --help
+ * gornin-starter -V
+ */
+program.parse(process.argv);
