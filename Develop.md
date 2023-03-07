@@ -12,7 +12,10 @@
       ░     ░ ░     ░              ░  ░           ░ 
 </pre>
 
-> 参考 [仿vue-cli从零搭建一个前端脚手架](https://juejin.cn/post/7125631921375150110)
+> 参考 
+> - [仿vue-cli从零搭建一个前端脚手架](https://juejin.cn/post/7125631921375150110)
+> - [从0搭建一个自己的前端脚手架](https://juejin.cn/post/6844904038987726856)
+> - [从零搭建一个前端cli脚手架并发布到npm](https://juejin.cn/post/7010673349571379231)
 
 ## 1. 包名
 
@@ -33,6 +36,8 @@
 使用[figlet.js](https://github.com/patorjk/figlet.js)生成，一个用JavaScript编写的FIG驱动程序，旨在完全实现FIGfont规范。
 
 [figlet](http://www.figlet.org/)
+
+或者使用 [cfonts](https://www.npmjs.com/package/cfonts)
 
 ```js
 #! /usr/bin/env node
@@ -67,6 +72,15 @@ console.log(text);
 
 完整的 node.js 命令行解决方案
 
+- usage(): 设置 usage 值
+- command(): 定义一个命令名字
+- description(): 设置 description 值
+- option(): 定义参数，需要设置“关键字”和“描述”，关键字包括“简写”和“全写”两部分，以”,”,”|”,”空格”做分隔。
+- parse(): 解析命令行参数 argv
+- action(): 注册一个 callback 函数
+- version() : 终端输出版本号
+
+
 ### [chalk](https://github.com/chalk/chalk)
 
 chalk 是一个可以修改终端输出字符样式的 npm 包
@@ -74,6 +88,18 @@ chalk 是一个可以修改终端输出字符样式的 npm 包
 ### [Inquirer](https://github.com/SBoudrias/Inquirer.js)
 
 inquirer 是一个和命令行交互的工具插件
+
+- type：表示提问的类型，包括：input, confirm, list, rawlist, expand, checkbox, password, editor；
+- message：问题的描述；
+- default：默认值；
+- choices：列表选项，在某些type下可用，并且包含一个分隔符(separator)；
+- validate：对用户的回答进行校验；
+- filter：对用户的回答进行过滤处理，返回处理后的值；
+- transformer：对用户回答的显示效果进行处理(如：修改回答的字体或背景颜色)，但不会影响最终的答案的内容；
+- when：根据前面问题的回答，判断当前问题是否需要被回答；
+- pageSize：修改某些type类型下的渲染行数；
+- prefix：修改message默认前缀；
+- suffix：修改message默认后缀。
 
 ## 6. 调取模版API
 
