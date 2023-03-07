@@ -1,6 +1,6 @@
 {
   "name": "gornin-starter",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "从github中拉取topic含template的脚手架应用",
   "main": "bin/main",
   "bin": {
@@ -31,7 +31,7 @@
     "fs-extra": "^11.1.0",
     "handlebars": "^4.7.7",
     "inquirer": "^8.2.5",
-    "log-symbols": "^5.1.0",
+    "log-symbols": "^4.1.0",
     "metalsmith": "^2.5.1",
     "ora": "^5.4.1"
   }
