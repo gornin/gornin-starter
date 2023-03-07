@@ -18,7 +18,7 @@ let text = figlet.textSync("gornin", {
   width: 200,
   whitespaceBreak: true,
 });
-text = `\r\n${chalk.green.bold(text)}\r\n`;
+text = `\r\n${chalk.greenBright.bold(text)}\r\n`;
 console.log(text);
 
 // version

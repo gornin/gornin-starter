@@ -16,36 +16,40 @@
 
 ## 1. 包名
 
+`gornin-starter`
+
 ## 2. package.json
 
 `npm init -y`
 
 ## 3. 入口文件
 
-`/bin/main`
+`/bin/main`，无文件后缀
 
-`#! /usr/bin/env` 是base脚本需要在第一行指定脚本的解释语言
+`#! /usr/bin/env node` base脚本需要在第一行指定脚本的解释语言，此处为node
+
+### banner
+
+使用[figlet](https://github.com/patorjk/figlet.js)生成
+
+[figlet.org](http://www.figlet.org/)
 
 ```js
 #! /usr/bin/env node
 
+// 使用figlet生成banner
 const figlet = require("figlet");
 
-console.log(`
-    \r\n
-    ${chalk.green.bold(
-        figlet.textSync("gornin", {
-        font: "isometric4",
-        horizontalLayout: "default",
-        verticalLayout: "default",
-        width: 200,
-        whitespaceBreak: true,
-        })
-    )}
-`);
+let text = figlet.textSync("gornin", {
+  font: "Bloody",
+  horizontalLayout: "default",
+  verticalLayout: "default",
+  width: 200,
+  whitespaceBreak: true,
+});
+text = `\r\n${chalk.green.bold(text)}\r\n`;
+console.log(text);
 ```
-
-[figlet](https://github.com/patorjk/figlet.js)
 
 ## 4. npm link 全局命令
 
@@ -82,6 +86,10 @@ inquirer 是一个和命令行交互的工具插件
 ```js
 const collectTemplateNameList = list.filter(item => item.topics.includes('template')).map(item => item.name);
 ```
+
+也就是说，你可以使用这个工具拉取你自己的脚手架或你知道的其它脚手架，只需在命令中添加 `-u xxx`
+
+e.g. `gornin-starter c test -u buingao`
 
 ## 7. axios 发起请求
 
@@ -125,7 +133,7 @@ async downloadTemplate(choiceTemplateName) {
 // 模版使用提示
 showTemplateHelp() {
     console.log(`\r\nSuccessfully created project ${chalk.cyan(this.projectName)}`);
-    console.log(`\r\n  cd ${chalk.cyan(this.projectName)}\r\n`);
+    console.log(`\r\n  cd ${chalk.cyan(this.projectName)}`);
     console.log("  npm install");
     console.log("  npm run dev\r\n");
 }
