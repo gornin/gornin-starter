@@ -7,7 +7,7 @@ const createModel = require("../lib/create");
 // figlet 字体
 const fonts = require("../assets/fonts");
 const index = Math.floor(Math.random() * fonts.length);
-const fontName = fonts[index].split(".")[0];
+const fontName = fonts[index].split(".")[0] || "Bloody";
 console.log("👇font-family👉", fontName);
 
 let text = figlet.textSync("gornin", {
