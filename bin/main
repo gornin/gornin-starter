@@ -10,6 +10,7 @@ const index = Math.floor(Math.random() * fonts.length);
 const fontName = fonts[index].split(".")[0] || "Bloody";
 console.log("👇font-family👉", fontName);
 
+// figlet.js
 let text = figlet.textSync("gornin", {
   // font: "Bloody",
   font: fontName,

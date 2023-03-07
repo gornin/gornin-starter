@@ -30,9 +30,9 @@
 
 ### banner
 
-使用[figlet](https://github.com/patorjk/figlet.js)生成
+使用[figlet.js](https://github.com/patorjk/figlet.js)生成，一个用JavaScript编写的FIG驱动程序，旨在完全实现FIGfont规范。
 
-[figlet.org](http://www.figlet.org/)
+[figlet](http://www.figlet.org/)
 
 ```js
 #! /usr/bin/env node
