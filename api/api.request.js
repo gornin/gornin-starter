@@ -1,2 +1,2 @@
 const HttpRequest = require("./request");
-module.exports = new HttpRequest("");
+module.exports = new HttpRequest();

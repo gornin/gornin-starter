@@ -2,32 +2,35 @@
 const { program } = require("commander");
 const chalk = require("chalk");
 const figlet = require("figlet");
-
-console.log(`
-            \r\n
-            ${chalk.green.bold(
-              figlet.textSync("gornin", {
-                font: "isometric4",
-                horizontalLayout: "default",
-                verticalLayout: "default",
-                width: 200,
-                whitespaceBreak: true,
-              })
-            )}
-        `);
-
 // 获取create模块
 const createModel = require("../lib/create");
+// figlet 字体
+const fonts = require("../assets/fonts");
+const index = Math.floor(Math.random() * fonts.length);
+const fontName = fonts[index].split(".")[0];
+console.log("👇font-family👉", fontName);
+
+let text = figlet.textSync("gornin", {
+  // font: "Bloody",
+  font: fontName,
+  horizontalLayout: "default",
+  verticalLayout: "default",
+  width: 200,
+  whitespaceBreak: true,
+});
+text = `\r\n${chalk.green.bold(text)}\r\n`;
+console.log(text);
 
 // version
 const version = require("../package.json").version;
 
 program
   .name("gornin-starter") // 配置脚手架名称
-  .usage("<command> [option]") // 配置命令格式
-  .version(version); // 配置版本号
+  .usage("<command> [option]") // 配置命令格式 Usage
+  .version(version, "-v, --version") // 配置版本号 -v --version, 第二个参数可以不加
+  .option("-f, --foo", "useless, just test adding a option");
 
-// 颜色
+// 自定义帮助
 program.on("--help", () => {
   console.log();
   console.log(
@@ -37,11 +40,20 @@ program.on("--help", () => {
   );
 });
 
+/*
+.option('-n, --name <items1> [items2]', 'name description', 'default value')
+自定义标志<必须>：分为长短标识，中间用逗号、竖线或者空格分割；标志后面可跟必须参数或可选参数，前者用<>包含，后者用[]包含
+选项描述<省略不报错>：在使用 --help 命令时显示标志描述
+默认值<可省略>
+短标志可以作为单独的参数传递。像 -abc 等于 -a -b -c。多词组成的选项，像“--template-engine”会变成 program.templateEngine 等。
+*/
 program
-  .command("create <project-name>")
+  .command("create <project-name>") // 添加命令名称
+  .alias("c")
   .description("create a new project")
-  .option("-f, --force", "overwrite target directory if it exists")
-  .action((projectName, options) => {
+  .option("-f, --force", "overwrite target directory if exists") // 使用.option()方法定义commander的选项options
+  .option("-u, --user <n>", "specifies the github user name")
+  .action((projectName, options, cmd) => {
     // 一个回调，回调的第一个参数就是上面的xxx，第二个参数就是--后面的
     // 引入create模块，并传入参数
     createModel(projectName, options);

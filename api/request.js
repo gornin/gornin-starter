@@ -2,19 +2,17 @@
 const axios = require("axios");
 
 class HttpRequest {
-  constructor(baseUrl, options = {}) {
-    this.baseUrl = baseUrl;
+  constructor(options = {}) {
     this.commonOptions = options;
   }
   getInsideConfig() {
     const configs = {
-      baseUrl: this.baseUrl,
       ...this.commonOptions,
     };
     return configs;
   }
   interceptors(instance, options) {
-    // todo...
+    // console.log(options);
   }
   request(options) {
     const instance = axios.create({});
