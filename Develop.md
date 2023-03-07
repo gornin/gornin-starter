@@ -66,6 +66,8 @@ console.log(text);
 
 终端中运行 `npm link`, 一切正常的话，就可以在控制台运行 `gornin-starter` 命令
 
+卸载 `npm unlink`
+
 ## 5. 脚手架选项 Options
 
 ### [commander](https://github.com/tj/commander.js/blob/master/Readme_zh-CN.md)
